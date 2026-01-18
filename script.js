@@ -9,3 +9,15 @@ function getComputerChoice(){
     }
 }
 console.log(getComputerChoice());
+
+function chooseWeapon(weapon){
+    const result = document.getElementById('result');
+    result.textContent = "You chose:" + weapon;
+}
+let HumanScore = 0
+let computerScore = 0 
+
+function playRound(chooseWeapon, getComputerChoice){
+    
+
+}
