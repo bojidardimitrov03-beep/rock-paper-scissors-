@@ -1,9 +1,13 @@
-function playGame() {
-  // Score variables inside playGame
-  let humanScore = 0;
-  let computerScore = 0;
+let humanScore = 0;
+let computerScore = 0;
+
+const resultsDiv = document.querySelector("#results")
+const scoreDiv = document.querySelector("#score")
+const rockButton = document.querySelector("#rock")
+const paperButton = document.querySelector("#paper")
+const scissorsButton = document.querySelector("#scissors")
   
-  function getComputerChoice() {
+function getComputerChoice() {
     const random = Math.random();
     if (random < 0.33) return 'rock';
     else if (random < 0.66) return 'paper';
@@ -18,7 +22,7 @@ function playGame() {
   function playRound(humanChoice, computerChoice) {
     humanChoice = humanChoice.toLowerCase();
     
-    console.log(`You chose: ${humanChoice}`);
+    resultsDiv.textContent =`you chose:${humanChoice}, Computer chose:$${computerChoice}`
     console.log(`Computer chose: ${computerChoice}`);
     
     if (humanChoice === computerChoice) {
@@ -40,34 +44,34 @@ function playGame() {
     
     console.log(`Score - You: ${humanScore}, Computer: ${computerScore}`);
     console.log('---');
-  }
+    // Check if someone reached 5 points
+if (humanScore === 5) {
+  resultsDiv.textContent += " YOU WON THE GAME!";
   
-  // Play 5 rounds - THIS IS THE FIXED PART
-  console.log('Round 1:');
-  playRound(getHumanChoice(), getComputerChoice());
-  
-  console.log('Round 2:');
-  playRound(getHumanChoice(), getComputerChoice());
-  
-  console.log('Round 3:');
-  playRound(getHumanChoice(), getComputerChoice());
-  
-  console.log('Round 4:');
-  playRound(getHumanChoice(), getComputerChoice());
-  
-  console.log('Round 5:');
-  playRound(getHumanChoice(), getComputerChoice());
-  
-  // Announce final winner
-  console.log('=== GAME OVER ===');
-  if (humanScore > computerScore) {
-    console.log(`You won the game! Final score: ${humanScore} - ${computerScore}`);
-  } else if (computerScore > humanScore) {
-    console.log(`Computer won the game! Final score: ${humanScore} - ${computerScore}`);
-  } else {
-    console.log(`It's a tie! Final score: ${humanScore} - ${computerScore}`);
-  }
+  // Maybe disable buttons here?
 }
+if (computerScore === 5) {
+  resultsDiv.textContent += " Computer won the game!";
+  // Maybe disable buttons here?
+}
+  }
+  
+  
+ 
 
-// Start the game
-playGame();
+  
+
+
+rockButton.addEventListener("click", ()=>{
+  const computerChoice = getComputerChoice();
+  playRound("rock", computerChoice)
+})
+
+paperButton.addEventListener("click",()=>{
+  const computerChoice = getComputerChoice()
+  playRound("paper", computerChoice)
+})
+scissorsButton.addEventListener("click", ()=>{
+  const computerChoice = getComputerChoice()
+  playRound("scissors", computerChoice)
+})
